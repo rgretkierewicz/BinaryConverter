@@ -9,28 +9,34 @@ public class Main {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("This is a binary converter. You can convert a decimal number less than 15 to 4-digit binary, or you can" +
-                "convert a 4-digit binary value to its equivalent decimal number." +
-                "Enter the command \"b\" to convert a decimal number to binary. THIS WILL RETURN A BINARY NUMBER." +
-                "Enter the command \"d\" to convert binary to decimal. THIS WILL RETURN A DECIMAL NUMBER.");
+        System.out.println("This is a binary converter. You can convert a decimal number between 0 and 255 to a binary value, or you can " +
+                "convert a 4 - 8 digit binary value to its equivalent decimal number." +
+                "Enter the command \"convert to binary\" to convert from a decimal number to binary." +
+                "Enter the command \"convert to decimal\" to convert from binary to decimal.");
 
-        //Could also skip the command step and base whether it is binary or decimal based on the length of the input
 
-        String command = scan.next();
+        String command = scan.next().toLowerCase();
 
         System.out.println("Enter the value you would like to convert.");
 
         String toConvert = scan.next();
 
-        //Add exception handling
+        try {
 
-        if (command.equals("b")) {
-            //b means binary is being returned
-            System.out.println(toConvert + " converted to binary is equal to: " + BinaryConversion.numToBinary(Integer.valueOf((toConvert))));
+            if (command.equals("convert to binary")) {
+                System.out.println(toConvert + " converted to binary is equal to: " + BinaryConversion.numToBinary(Integer.valueOf((toConvert))));
 
+            }
+            else if (command.equals("convert to decimal")) {
+                System.out.println(toConvert + " converted to decimal is equal to: " + BinaryConversion.binaryToNum(toConvert));
+            }
+            else {
+                System.out.println("Invalid command. Please try again.");
+            }
         }
-        if (command.equals("d")) {
-            System.out.println(toConvert + " converted to decimal is equal to: " + BinaryConversion.binaryToNum(toConvert));
+
+        catch (Exception e) {
+            e.printStackTrace();
         }
 
 
